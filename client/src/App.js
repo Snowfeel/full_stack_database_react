@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import CreatePost from "./pages/CreatePost";
 import Post from "./pages/Post";
+import Login from "./pages/Login";
+import Registration from "./pages/Registration";
 
 function App() {
   return (
@@ -11,11 +13,19 @@ function App() {
         <div className="navbar">
           <Link to="/">Home</Link>
           <Link to="/createpost">Create A Post</Link>
+          {!localStorage.getItem("accessToken") && (
+            <>
+              <Link to="/login">Login</Link>
+              <Link to="/registrations">Registrations</Link>
+            </>
+          )}
         </div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/createpost" element={<CreatePost />} />
           <Route path="/post/:id" element={<Post />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registrations" element={<Registration />} />
         </Routes>
       </Router>
     </div>
