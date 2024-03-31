@@ -21,8 +21,12 @@ function Login() {
         alert(res.data.error);
       } else {
         alert("Login Success");
-        localStorage.setItem("accessToken", res.data);
-        setAuthState(true);
+        localStorage.setItem("accessToken", res.data.token);
+        setAuthState({
+          username: res.data.username,
+          id: res.data.id,
+          status: true,
+        });
         navigate("/");
       }
     });
