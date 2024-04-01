@@ -52,12 +52,15 @@ function App() {
         <Router>
           <div className="navbar">
             <div className="links">
-              <Link to="/"> Home Page</Link>
-              <Link to="/createpost"> Create A Post</Link>
-              {!authState.status && (
+              {!authState.status ? (
                 <>
                   <Link to="/login"> Login</Link>
                   <Link to="/registration"> Registration</Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/"> Home Page</Link>
+                  <Link to="/createpost"> Create A Post</Link>
                 </>
               )}
             </div>
@@ -71,7 +74,7 @@ function App() {
             <Route path="/createpost" element={<CreatePost />} />
             <Route path="/post/:id" element={<Post />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/registrations" element={<Registration />} />
+            <Route path="/registration" element={<Registration />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Router>

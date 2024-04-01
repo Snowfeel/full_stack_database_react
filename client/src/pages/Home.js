@@ -10,18 +10,23 @@ function Home() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/posts", {
-        headers: { accessToken: localStorage.getItem("accessToken") },
-      })
-      .then((res) => {
-        setListOfPosts(res.data.listOfPosts);
-        setLikedPosts(
-          res.data.likedPosts.map((like) => {
-            return like.PostId;
-          })
-        );
-      });
+    if (!localStorage.getItem("accessToken")) {
+      navigate("/login");
+    } else {
+      axios
+        .get("http://localhost:3001/posts", {
+          headers: { accessToken: localStorage.getItem("accessToken") },
+        })
+        .then((res) => {
+          setListOfPosts(res.data.listOfPosts);
+          setLikedPosts(
+            res.data.likedPosts.map((like) => {
+              return like.PostId;
+            })
+          );
+        });
+    }
+    // eslint-disable-next-line
   }, []);
 
   const likeAPost = (postId) => {
