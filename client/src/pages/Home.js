@@ -80,7 +80,12 @@ function Home() {
               {value.content}
             </div>
             <div className="footer">
-              <div className="username">{value.username}</div>
+              <div
+                className="username"
+                onClick={() => navigate("/profile/" + value.UserId)}
+              >
+                {value.username}
+              </div>
               <div className="buttons">
                 <ThumbUpAltIcon
                   onClick={() => {

@@ -80,7 +80,9 @@ function Post() {
           <div className="footer">
             {postObject.username}
             {authState.username === postObject.username && (
-              <button onClick={deletePost(postObject.id)}>Delete Post</button>
+              <button onClick={() => deletePost(postObject.id)}>
+                Delete Post
+              </button>
             )}
           </div>
         </div>
